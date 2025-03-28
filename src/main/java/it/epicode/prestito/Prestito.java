@@ -8,13 +8,15 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "prestiti")
+@NamedQuery(name = "Prestito.prestitoByTessera", query = "SELECT p.elementoPrestato FROM Prestito p WHERE p.utente.numeroTessera = :numeroTessera")
+@NamedQuery(name = "Prestito.prestitiScaduti", query = "SELECT p FROM Prestito p WHERE p.dataRestituzioneEffettiva < :oggi")
 public class Prestito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     private Utente utente;
-    @OneToOne
+    @ManyToOne
     private Pubblicazione elementoPrestato;
     private LocalDate dataInizioPrestito;
     private LocalDate dataRestituzionePrevista;
