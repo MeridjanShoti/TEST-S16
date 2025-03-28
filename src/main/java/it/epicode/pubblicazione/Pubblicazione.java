@@ -1,17 +1,24 @@
 package it.epicode.pubblicazione;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "pubblicazioni")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Pubblicazione {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ISBN;
     private String title;
     private int annoPubblicazione;
     private int numeroPagine;
 
-    public Pubblicazione(int ISBN, String title, int annoPubblicazione, int numeroPagine) {
-        this.ISBN = ISBN;
+    public Pubblicazione(String title, int annoPubblicazione, int numeroPagine) {
         this.title = title;
         this.annoPubblicazione = annoPubblicazione;
         this.numeroPagine = numeroPagine;
     }
+    public Pubblicazione() {}
 
     public int getISBN() {
         return ISBN;

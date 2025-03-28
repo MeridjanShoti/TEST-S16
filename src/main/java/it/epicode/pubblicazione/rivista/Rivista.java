@@ -5,8 +5,8 @@ import it.epicode.pubblicazione.Pubblicazione;
 public class Rivista extends Pubblicazione {
     private Periodicita periodicita;
 
-    public Rivista(int ISBN, String title, int annoPubblicazione, int numeroPagine, Periodicita periodicita) {
-        super(ISBN, title, annoPubblicazione, numeroPagine);
+    public Rivista(String title, int annoPubblicazione, int numeroPagine, Periodicita periodicita) {
+        super(title, annoPubblicazione, numeroPagine);
         this.periodicita = periodicita;
     }
 

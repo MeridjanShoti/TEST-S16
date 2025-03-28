@@ -1,0 +1,3 @@
+Un utente può effettuare più prestiti, ma un prestito può essere stato richiesto solo da un utente, quindi la relazione sarà @ManyToOne dove one è Utente e many è Prestito.
+Il prestito viene gestito un libro alla volta e un libro, una volta restituito può essere prestato nuovamente, quindi la relazione sarà @ManyToOne dove one è Libro e many è Prestito.
+NB: nello schema potevo mettere solo tipi predefiniti quindi in Prestito l'attributo elementoPrestato sarà una Pubblicazione, mentre utente sarà un Utente.

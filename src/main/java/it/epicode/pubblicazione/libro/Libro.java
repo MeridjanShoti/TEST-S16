@@ -6,8 +6,8 @@ public class Libro extends Pubblicazione {
     private String author;
     private String genre;
 
-    public Libro(int ISBN, String title, int annoPubblicazione, int numeroPagine, String author, String genre) {
-        super(ISBN, title, annoPubblicazione, numeroPagine);
+    public Libro(String title, int annoPubblicazione, int numeroPagine, String author, String genre) {
+        super(title, annoPubblicazione, numeroPagine);
         this.author = author;
         this.genre = genre;
     }
