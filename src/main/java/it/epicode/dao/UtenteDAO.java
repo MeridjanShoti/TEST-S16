@@ -1,5 +1,6 @@
-package it.epicode.utente;
+package it.epicode.dao;
 
+import it.epicode.entity.Utente;
 import jakarta.persistence.EntityManager;
 
 public class UtenteDAO {

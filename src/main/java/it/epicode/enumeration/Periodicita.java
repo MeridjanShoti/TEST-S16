@@ -1,4 +1,4 @@
-package it.epicode.pubblicazione.rivista;
+package it.epicode.enumeration;
 
 public enum Periodicita {
     SETTIMANALE, MENSILE, SEMESTRALE

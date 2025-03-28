@@ -1,7 +1,9 @@
-package it.epicode.pubblicazione.rivista;
+package it.epicode.entity;
 
-import it.epicode.pubblicazione.Pubblicazione;
+import it.epicode.enumeration.Periodicita;
+import jakarta.persistence.Entity;
 
+@Entity
 public class Rivista extends Pubblicazione {
     private Periodicita periodicita;
 

@@ -1,7 +1,5 @@
-package it.epicode.prestito;
+package it.epicode.entity;
 
-import it.epicode.pubblicazione.Pubblicazione;
-import it.epicode.utente.Utente;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -9,7 +7,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "prestiti")
 @NamedQuery(name = "Prestito.prestitoByTessera", query = "SELECT p.elementoPrestato FROM Prestito p WHERE p.utente.numeroTessera = :numeroTessera")
-@NamedQuery(name = "Prestito.prestitiScaduti", query = "SELECT p FROM Prestito p WHERE p.dataRestituzioneEffettiva < :oggi")
+@NamedQuery(name = "Prestito.prestitiScaduti", query = "SELECT p FROM Prestito p WHERE p.dataRestituzioneEffettiva is null AND :oggi > p.dataRestituzionePrevista")
 public class Prestito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

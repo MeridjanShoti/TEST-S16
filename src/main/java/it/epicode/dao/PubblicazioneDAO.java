@@ -1,6 +1,9 @@
-package it.epicode.pubblicazione;
+package it.epicode.dao;
 
+import it.epicode.entity.Pubblicazione;
 import jakarta.persistence.EntityManager;
+
+import java.util.List;
 
 public class PubblicazioneDAO {
     private EntityManager em;
@@ -34,6 +37,14 @@ public class PubblicazioneDAO {
     public void updateNoTx(Pubblicazione pubblicazione) {
         em.merge(pubblicazione);
     }
-
+    public List<Pubblicazione> findByAnnoPubblicazione(int annoPubblicazione) {
+        return em.createNamedQuery("Pubblicazione.findByAnnoPubblicazione", Pubblicazione.class).setParameter("annoPubblicazione", annoPubblicazione).getResultList();
+    }
+    public List<Pubblicazione> findByAutore(String autore) {
+        return em.createNamedQuery("Pubblicazione.findByAutore", Pubblicazione.class).setParameter("autore", autore).getResultList();
+    }
+    public List<Pubblicazione> findByTitolo(String titolo) {
+        return em.createNamedQuery("Pubblicazione.findByTitolo", Pubblicazione.class).setParameter("titolo", titolo).getResultList();
+    }
 
 }

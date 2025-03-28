@@ -1,11 +1,8 @@
-package it.epicode.utente;
+package it.epicode.entity;
 
-import it.epicode.prestito.Prestito;
-import it.epicode.pubblicazione.Pubblicazione;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Locale;
 
 @Entity
 @Table(name = "utenti")
@@ -16,8 +13,6 @@ public class Utente {
     private String nome;
     private String cognome;
     private LocalDate dataNascita;
-    @OneToMany (mappedBy = "utente")
-    private Prestito prestito;
 
     public Utente(String nome, String cognome, LocalDate dataNascita) {
         this.nome = nome;

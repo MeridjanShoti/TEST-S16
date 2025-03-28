@@ -1,7 +1,7 @@
-package it.epicode.prestito;
+package it.epicode.dao;
 
-import it.epicode.pubblicazione.Pubblicazione;
-import jakarta.persistence.Entity;
+import it.epicode.entity.Prestito;
+import it.epicode.entity.Pubblicazione;
 import jakarta.persistence.EntityManager;
 
 import java.time.LocalDate;
@@ -43,6 +43,7 @@ public class PrestitoDAO {
         return em.createNamedQuery("Prestito.prestitoByTessera", Pubblicazione.class).setParameter("numeroTessera", numeroTessera).getResultList();
     }
     public List<Prestito> getAllPrestitiScaduti() {
-        return em.createNamedQuery("Prestito.prestitoScaduto", Prestito.class).setParameter("oggi", LocalDate.now()).getResultList();
+        LocalDate dataFutura = LocalDate.now().plusDays(50);
+        return em.createNamedQuery("Prestito.prestitoScaduto", Prestito.class).setParameter("oggi", dataFutura).getResultList();
     }
 }
