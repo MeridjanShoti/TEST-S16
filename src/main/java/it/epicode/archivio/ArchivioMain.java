@@ -22,6 +22,13 @@ public class ArchivioMain {
         utenteDAO.save(new Utente("Mario", "Rossi", LocalDate.of(2000, 1, 1)));
         utenteDAO.save(new Utente("Giuseppe", "Verdi", LocalDate.of(1990, 1, 1)));
         utenteDAO.save(new Utente("Stefano", "Bianchi", LocalDate.of(1980, 1, 1)));
+        utenteDAO.save(new Utente("Luigi", "Neri", LocalDate.of(1970, 1, 1)));
+        utenteDAO.save(new Utente("Giovanni", "Gialli", LocalDate.of(1960, 1, 1)));
+        utenteDAO.save(new Utente("Giovanna", "Azzurri", LocalDate.of(1950, 1, 1)));
+        utenteDAO.save(new Utente("Giovanni", "Blu", LocalDate.of(1940, 1, 1)));
+        utenteDAO.save(new Utente("Giovanna", "Rosa", LocalDate.of(1930, 1, 1)));
+        utenteDAO.save(new Utente("Giovanni", "Verde", LocalDate.of(1920, 1, 1)));
+
         Pubblicazione libro1 = new Libro("Il Signore degli Anelli", 1954, 1000, "JRR Tolkien", "Fantasy");
         Pubblicazione libro2 = new Libro("Il Signore dei signori", 1967, 666, "Gigi Tolchio", "Scientifico");
         Pubblicazione libro3 = new Libro("Gli anelli del signore", 1989, 420, "Giangianni Tolkini", "Thriller");

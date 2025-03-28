@@ -3,7 +3,7 @@ package it.epicode.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.NamedQuery;
 @Entity
-@NamedQuery(name = "Pubblicazione.findByAutore", query = "SELECT p FROM Pubblicazione p WHERE p.autore = :autore")
+@NamedQuery(name = "Pubblicazione.findByAutore", query = "SELECT p FROM Pubblicazione p WHERE p.author = :autore")
 public class Libro extends Pubblicazione {
     private String author;
     private String genre;
