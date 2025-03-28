@@ -19,6 +19,8 @@ public class ArchivioMain {
         PubblicazioneDAO pubblicazioneDAO = new PubblicazioneDAO(em);
         UtenteDAO utenteDAO = new UtenteDAO(em);
         PrestitoDAO prestitoDAO = new PrestitoDAO(em);
+
+        // aggiungo utenti
         utenteDAO.save(new Utente("Mario", "Rossi", LocalDate.of(2000, 1, 1)));
         utenteDAO.save(new Utente("Giuseppe", "Verdi", LocalDate.of(1990, 1, 1)));
         utenteDAO.save(new Utente("Stefano", "Bianchi", LocalDate.of(1980, 1, 1)));
@@ -28,7 +30,7 @@ public class ArchivioMain {
         utenteDAO.save(new Utente("Giovanni", "Blu", LocalDate.of(1940, 1, 1)));
         utenteDAO.save(new Utente("Giovanna", "Rosa", LocalDate.of(1930, 1, 1)));
         utenteDAO.save(new Utente("Giovanni", "Verde", LocalDate.of(1920, 1, 1)));
-
+        //aggiungo pubblicazioni
         Pubblicazione libro1 = new Libro("Il Signore degli Anelli", 1954, 1000, "JRR Tolkien", "Fantasy");
         Pubblicazione libro2 = new Libro("Il Signore dei signori", 1967, 666, "Gigi Tolchio", "Scientifico");
         Pubblicazione libro3 = new Libro("Gli anelli del signore", 1989, 420, "Giangianni Tolkini", "Thriller");
@@ -43,7 +45,7 @@ public class ArchivioMain {
         em.getTransaction().begin();
         pubblicazioneDAO.saveNoTx(libro1);
         pubblicazioni.forEach(pubblicazioneDAO::saveNoTx);
-
+        //aggiungo prestiti
         Prestito prestito1 = new Prestito(utenteDAO.getById(1), libro1, LocalDate.of(2025, 03, 22), LocalDate.of(2025, 03, 26));
         Prestito prestito2 = new Prestito(utenteDAO.getById(2), libro2, LocalDate.of(2025, 03, 20), LocalDate.of(2025, 03, 28));
         Prestito prestito3 = new Prestito(utenteDAO.getById(3), libro3, LocalDate.of(2025, 01, 23), null);
@@ -54,8 +56,46 @@ public class ArchivioMain {
         List<Prestito> prestiti = List.of(prestito1, prestito2, prestito3, prestito4, prestito5, prestito6);
         prestiti.forEach(prestitoDAO::saveNoTx);
 
+
+        System.out.println("Trovo tramite ISBN: ");
         em.getTransaction().commit();
 
+        System.out.println(pubblicazioneDAO.getById(2));
 
+        System.out.println("Ricerco per anno di pubblicazione: ");
+        System.out.println(pubblicazioneDAO.findByAnnoPubblicazione(2025));
+
+        System.out.println("Ricerco per Autore");
+        System.out.println(pubblicazioneDAO.findByAutore("Pippo Franco"));
+
+        System.out.println("Ricerco per titolo");
+        System.out.println(pubblicazioneDAO.findByTitolo("Pesca al cefalo"));
+
+        System.out.println("Ricerco per parte del titolo");
+        System.out.println(pubblicazioneDAO.findByTitolo("%Moto%"));
+
+        System.out.println("Ricerco per tessera utente");
+        System.out.println(prestitoDAO.getAllByIdTesseraUtente(3));
+
+        System.out.println("ricerco tutti i prestiti scaduti e non ancora restituiti");
+        System.out.println(prestitoDAO.getAllPrestitiScaduti());
+
+        System.out.println("aggiungo un nuovo libro e lo ricerco");
+
+        pubblicazioneDAO.save(new Libro("il gioielliere", 2025, 1000, "Meridjan", "Fantasy"));
+        System.out.println(pubblicazioneDAO.getById(7));
+
+        System.out.println("elimino il titolo appena creato tramite ISBN");
+
+        pubblicazioneDAO.delete(pubblicazioneDAO.getById(7));
+        try {
+            Pubblicazione nuovoLibro = pubblicazioneDAO.getById(7);
+            if (nuovoLibro == null) {
+                throw new Exception();
+            }
+            System.out.println(nuovoLibro);
+        } catch (Exception e) {
+            System.out.println("Sono nel catch perchè il libro non esiste più");
+        }
     }
 }

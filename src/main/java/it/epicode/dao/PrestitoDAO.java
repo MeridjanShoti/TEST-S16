@@ -44,6 +44,6 @@ public class PrestitoDAO {
     }
     public List<Prestito> getAllPrestitiScaduti() {
         LocalDate dataFutura = LocalDate.now().plusDays(50);
-        return em.createNamedQuery("Prestito.prestitoScaduto", Prestito.class).setParameter("oggi", dataFutura).getResultList();
+        return em.createNamedQuery("Prestito.prestitiScaduti", Prestito.class).setParameter("oggi", dataFutura).getResultList();
     }
 }
