@@ -43,7 +43,7 @@ public class PrestitoDAO {
         return em.createNamedQuery("Prestito.prestitoByTessera", Pubblicazione.class).setParameter("numeroTessera", numeroTessera).getResultList();
     }
     public List<Prestito> getAllPrestitiScaduti() {
-        LocalDate dataFutura = LocalDate.now().plusDays(50);
-        return em.createNamedQuery("Prestito.prestitiScaduti", Prestito.class).setParameter("oggi", dataFutura).getResultList();
+
+        return em.createNamedQuery("Prestito.prestitiScaduti", Prestito.class).setParameter("oggi", LocalDate.now()).getResultList();
     }
 }
