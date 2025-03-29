@@ -83,13 +83,13 @@ public class ArchivioMain {
         System.out.println("aggiungo un nuovo libro e lo ricerco");
 
         pubblicazioneDAO.save(new Libro("il gioielliere", 2025, 1000, "Meridjan", "Fantasy"));
-        System.out.println(pubblicazioneDAO.getById(7));
+        System.out.println(pubblicazioneDAO.getById(11));
 
         System.out.println("elimino il titolo appena creato tramite ISBN");
 
-        pubblicazioneDAO.delete(pubblicazioneDAO.getById(7));
+        pubblicazioneDAO.delete(pubblicazioneDAO.getById(11));
         try {
-            Pubblicazione nuovoLibro = pubblicazioneDAO.getById(7);
+            Pubblicazione nuovoLibro = pubblicazioneDAO.getById(11);
             if (nuovoLibro == null) {
                 throw new Exception();
             }
